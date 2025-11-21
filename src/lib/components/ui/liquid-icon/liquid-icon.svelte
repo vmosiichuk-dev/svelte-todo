@@ -1,25 +1,27 @@
 <script lang="ts">
-	type Size = 12 | 16 | 24;
+	type Size = 'xs' | 'sm' | 'md' | 'lg';
+
 	type LiquidIconProps = {
 		src: string;
 		alt: string;
 		size?: Size;
-		iconClass?: string | undefined;
-		containerClass?: string | undefined;
+		iconClass?: string;
+		containerClass?: string;
 	};
 
 	const sizes: Record<Size, string> = {
-		12: 'h-12 w-12',
-		16: 'h-16 w-16',
-		24: 'h-24 w-24'
+		xs: 'h-8 w-8',
+		sm: 'h-12 w-12',
+		md: 'h-16 w-16',
+		lg: 'h-24 w-24'
 	};
 
 	let {
 		src,
 		alt,
-		size = 12,
-		iconClass,
-		containerClass
+		size = 'md',
+		iconClass = '',
+		containerClass = ''
 	}: LiquidIconProps = $props();
 </script>
 
