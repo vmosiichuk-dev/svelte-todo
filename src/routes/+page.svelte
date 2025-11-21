@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { PAGE_TITLES } from '$lib/constants/paths';
-	import { getBrowserTabTitle } from '$lib/utils/paths';
+	import { ROUTES } from '$constants';
+	import { getBrowserTabTitle } from '$utils';
 
-	const title = getBrowserTabTitle(PAGE_TITLES.HOMEPAGE);
+	const title = getBrowserTabTitle(ROUTES.HOMEPAGE.title);
 </script>
 
 <svelte:head>
 	<title>{title}</title>
 </svelte:head>
 
-<h1>{PAGE_TITLES.HOMEPAGE}</h1>
+<h1>{ROUTES.HOMEPAGE.title}</h1>

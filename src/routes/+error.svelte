@@ -1,25 +1,56 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { resolve } from '$app/paths';
-	import { PAGE_TITLES } from '$lib/constants/paths';
-	import { getBrowserTabTitle } from '$lib/utils/paths';
+	import { ROUTES } from '$constants';
+	import { getBrowserTabTitle, gotoPage } from '$utils';
+	import { MoveRight } from '@lucide/svelte';
+	import { errorIcon } from '$assets';
+	import { Button } from '$ui/button';
+	import { LiquidIcon } from '$ui/liquid-icon';
+	import * as Empty from '$ui/empty';
 
-	const title = getBrowserTabTitle(`${PAGE_TITLES.ERROR} ${page.status}`);
+	const { title, path } = ROUTES.HOMEPAGE;
+	const messages = {
+		404: 'Looks like the page you’re looking for doesn’t exist.',
+		500: `Oops... Something went wrong.\nTry reloading the app or come back later.`,
+	};
 </script>
 
 <svelte:head>
-	<title>{title}</title>
+	<title>{getBrowserTabTitle(page.status)}</title>
 </svelte:head>
 
-<main>
-	<h1>{page.status}</h1>
-	<p>{page.error?.message}</p>
+<Empty.Root>
+	<Empty.Header>
+		<LiquidIcon src={errorIcon} alt="Error Icon" />
+
+		<Empty.Title>
+			{page.status} – {page.error?.message}
+		</Empty.Title>
+
+		<Empty.Description>
+			<p class="text-balance whitespace-break-spaces">
+				{page.status === 404 ? messages[404] : messages[500]}
+			</p>
+		</Empty.Description>
+	</Empty.Header>
 
 	{#if page.status === 404}
-		<p>Looks like the page you’re looking for doesn’t exist.</p>
-	{:else if page.status >= 500}
-		<p>Something went wrong on our side. We’re already working on it.</p>
-	{/if}
+		<Empty.Content>
+			<Empty.Description>
+				<Button
+					class="group"
+					onclick={() => gotoPage(path)}
+				>
+					<MoveRight
+						class={[
+							'transition-transform duration-200',
+							'group-hover:scale-125'
+						]}
+					/>
 
-	<a href={resolve('/')}>Return to homepage</a>
-</main>
+					<span>Go to {title.toLowerCase()}</span>
+				</Button>
+			</Empty.Description>
+		</Empty.Content>
+	{/if}
+</Empty.Root>
