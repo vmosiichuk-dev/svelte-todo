@@ -13,7 +13,7 @@
 		xs: 'h-8 w-8',
 		sm: 'h-12 w-12',
 		md: 'h-16 w-16',
-		lg: 'h-24 w-24'
+		lg: 'h-24 w-24',
 	};
 
 	let {
@@ -21,10 +21,10 @@
 		alt,
 		size = 'md',
 		iconClass = '',
-		containerClass = ''
+		containerClass = '',
 	}: LiquidIconProps = $props();
 </script>
 
-<div class={['grid place-content-center', sizes[size], containerClass ]}>
+<div class={['grid place-content-center', sizes[size], containerClass]}>
 	<img {src} {alt} class={['w-full drop-shadow-liquid', iconClass]} />
 </div>

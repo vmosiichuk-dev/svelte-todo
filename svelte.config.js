@@ -8,10 +8,11 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$assets: 'src/lib/assets',
+			$components: 'src/lib/components',
 			$constants: 'src/lib/constants',
-			$ui: 'src/lib/components/ui',
-			$utils: 'src/lib/utils'
-		}
+			$state: 'src/lib/state',
+			$utils: 'src/lib/utils',
+		},
 	},
 };
 

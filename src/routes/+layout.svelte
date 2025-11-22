@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { ModeWatcher } from 'mode-watcher';
-	import { ModeToggle } from '$ui/mode-toggle';
-	import { Button } from '$ui/button';
+	import { ModeToggle } from '$components/mode-toggle';
+	import { Button } from '$components/button';
 	import { Menu } from '@lucide/svelte';
-	import * as Avatar from '$ui/avatar';
-	import * as Sheet from '$ui/sheet';
+	import * as Avatar from '$components/avatar';
+	import * as Sheet from '$components/sheet';
 	import './layout.css';
 
 	let { children } = $props();
@@ -26,7 +26,8 @@
 					<Sheet.Title>Edit profile</Sheet.Title>
 
 					<Sheet.Description>
-						Make changes to your profile here. Click save when you're done.
+						Make changes to your profile here. Click save when
+						you're done.
 					</Sheet.Description>
 				</Sheet.Header>
 
@@ -36,11 +37,13 @@
 			</Sheet.Content>
 		</Sheet.Root>
 
-
 		<Sheet.Root>
 			<Sheet.Trigger>
 				<Avatar.Root>
-					<Avatar.Image src="https://github.com/leerob.png" alt="@leerob" />
+					<Avatar.Image
+						src="https://github.com/leerob.png"
+						alt="@leerob"
+					/>
 
 					<Avatar.Fallback>LR</Avatar.Fallback>
 				</Avatar.Root>
@@ -51,7 +54,8 @@
 					<Sheet.Title>Edit profile</Sheet.Title>
 
 					<Sheet.Description>
-						Make changes to your profile here. Click save when you're done.
+						Make changes to your profile here. Click save when
+						you're done.
 					</Sheet.Description>
 				</Sheet.Header>
 

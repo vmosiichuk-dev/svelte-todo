@@ -1,7 +1,8 @@
 import type { Pathname } from '$app/types';
 import { goto } from '$app/navigation';
 import { resolve } from '$app/paths';
-import { APP_TITLE } from '$constants';
+
+type Route = { title: string; path: Pathname };
 
 type GotoOptions = {
 	replaceState?: boolean | undefined;
@@ -10,6 +11,12 @@ type GotoOptions = {
 	invalidateAll?: boolean | undefined;
 	invalidate?: (string | URL | ((url: URL) => boolean))[] | undefined;
 	state?: App.PageState | undefined;
+};
+
+export const APP_TITLE = 'Mindmap';
+
+export const ROUTES: Record<string, Route> = {
+	HOMEPAGE: { title: 'Homepage', path: '/' },
 };
 
 export const getBrowserTabTitle = (

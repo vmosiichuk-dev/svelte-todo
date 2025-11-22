@@ -1,11 +1,11 @@
 <script lang="ts" module>
-	import type { WithElementRef } from '$lib/utils/tw.ts';
+	import type { WithElementRef } from '$utils';
 	import type { VariantProps } from 'tailwind-variants';
 	import type { Pathname } from '$app/types';
 
 	import type {
 		HTMLAnchorAttributes,
-		HTMLButtonAttributes
+		HTMLButtonAttributes,
 	} from 'svelte/elements';
 
 	import { resolve } from '$app/paths';
