@@ -26,17 +26,35 @@ export class TasksState {
 	}
 
 	get all() {
-		return this.#storage.current;
+		return [...this.#storage.current].sort((a, b) => {
+			return b.date - a.date;
+		});
 	}
 
 	add(task: Task) {
 		this.#storage.current = [...this.all, task];
 	}
 
-	update(id: string, data: Partial<Task>) {
-		this.#storage.current = this.all.map((task: Task) =>
-			task.id === id ? { ...task, ...data } : task
-		);
+	delete(id: Task['id']) {
+		const updatedTasks = this.all;
+		this.#storage.current = updatedTasks.filter((task: Task) => {
+			return task.id !== id;
+		});
+	}
+
+	toggleStatus(id: string) {
+		const updatedTasks = [...this.all];
+		const index = updatedTasks.findIndex(task => task.id === id);
+
+		if (index !== -1) {
+			const task = updatedTasks[index];
+			updatedTasks[index] = {
+				...task,
+				status: task.status === TASK_STATUS.TODO ? TASK_STATUS.DONE : TASK_STATUS.TODO,
+			};
+
+			this.#storage.current = [...updatedTasks];
+		}
 	}
 
 	get todo() {

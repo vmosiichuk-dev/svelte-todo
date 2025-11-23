@@ -18,7 +18,7 @@
 	</title>
 </svelte:head>
 
-<Empty.Root>
+<Empty.Root class="h-full">
 	<Empty.Header>
 		<ErrorIcon className="size-12 drop-shadow-liquid" />
 
