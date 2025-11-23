@@ -2,9 +2,8 @@
 	import { page } from '$app/state';
 	import { getBrowserTabTitle, gotoPage, ROUTES } from '$utils';
 	import { MoveRight } from '@lucide/svelte';
-	import { errorIcon } from '$assets';
+	import { ErrorIcon } from '$assets';
 	import { Button } from '$components/button';
-	import { LiquidIcon } from '$components/liquid-icon';
 	import * as Empty from '$components/empty';
 
 	const messages = {
@@ -14,12 +13,14 @@
 </script>
 
 <svelte:head>
-	<title>{getBrowserTabTitle(page.status)}</title>
+	<title>
+		{getBrowserTabTitle(page.status)}
+	</title>
 </svelte:head>
 
 <Empty.Root>
 	<Empty.Header>
-		<LiquidIcon src={errorIcon} alt="Error Icon" />
+		<ErrorIcon className="size-12 drop-shadow-liquid" />
 
 		<Empty.Title>
 			{page.status} – {page.error?.message}

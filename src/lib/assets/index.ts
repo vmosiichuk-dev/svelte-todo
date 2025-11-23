@@ -1,1 +1,20 @@
-export { default as errorIcon } from './error.svg';
+export { default as CheckmarkIcon } from './checkmark.svelte';
+export { default as ClockIcon } from './clock.svelte';
+export { default as ErrorIcon } from './error.svelte';
+export { default as InfoIcon } from './info.svelte';
+export { default as MenuIcon } from './menu.svelte';
+export { default as PlusIcon } from './plus.svelte';
+export { default as RemoveIcon } from './remove.svelte';
+export { default as RoundIcon } from './round.svelte';
+export { default as SettingsIcon } from './settings.svelte';
+export { default as TrashcanIcon } from './trashcan.svelte';
+
+export { default as BoxIcon } from './box.svelte';
+export { default as CheckallIcon } from './checkall.svelte';
+export { default as ConnectIcon } from './connect.svelte';
+export { default as IdeaIcon } from './idea.svelte';
+export { default as RefreshIcon } from './refresh.svelte';
+export { default as RestartIcon } from './restart.svelte';
+export { default as ScrollIcon } from './scroll.svelte';
+export { default as ServicesIcon } from './services.svelte';
+export { default as SynchronizeIcon } from './synchronize.svelte';

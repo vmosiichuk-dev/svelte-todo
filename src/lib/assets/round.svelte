@@ -1,0 +1,42 @@
+<script lang="ts">
+	export let className: string = '';
+</script>
+
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	{...$$restProps}
+	class={className}
+	width="100%"
+	height="100%"
+	viewBox="0 0 24 24"
+	baseProfile="basic"
+>
+	<linearGradient
+		id="dgrqJ4WidONAldAj-8cesa"
+		x1="4.929"
+		x2="19.071"
+		y1="4.929"
+		y2="19.071"
+		gradientUnits="userSpaceOnUse"
+	>
+		<stop offset="0" stop-color="#fff" stop-opacity=".6" />
+		<stop offset="1" stop-color="#fff" stop-opacity=".3" />
+	</linearGradient>
+	<circle cx="12" cy="12" r="10" fill="url(#dgrqJ4WidONAldAj-8cesa)" />
+	<linearGradient
+		id="dgrqJ4WidONAldAj-8cesb"
+		x1="4.929"
+		x2="19.071"
+		y1="4.929"
+		y2="19.071"
+		gradientUnits="userSpaceOnUse"
+	>
+		<stop offset="0" stop-color="#fff" stop-opacity=".6" />
+		<stop offset=".493" stop-color="#fff" stop-opacity="0" />
+		<stop offset=".997" stop-color="#fff" stop-opacity=".3" />
+	</linearGradient>
+	<path
+		fill="url(#dgrqJ4WidONAldAj-8cesb)"
+		d="M12,2.5c5.238,0,9.5,4.262,9.5,9.5 s-4.262,9.5-9.5,9.5S2.5,17.238,2.5,12S6.762,2.5,12,2.5 M12,2C6.477,2,2,6.477,2,12s4.477,10,10,10s10-4.477,10-10S17.523,2,12,2 L12,2z"
+	/>
+</svg>

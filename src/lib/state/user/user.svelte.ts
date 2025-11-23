@@ -2,35 +2,36 @@ import { LocalStorage } from '$utils';
 
 export type User = {
 	id: string;
-	name: string;
+	name?: string;
 	avatar?: string;
 };
 
 export class UserState {
+	loaded = $state(false);
 	#storage = new LocalStorage<User>('user', {
 		id: crypto.randomUUID(),
-		name: 'Linus Torvalds',
+		name: '',
 		avatar: '',
 	});
 
-	get all() {
+	constructor() {
+		this.loaded = true;
+	}
+
+	get user() {
 		return this.#storage.current;
 	}
 
-	add(user: User) {
-		this.#storage.current = [...this.all, user];
+	get name() {
+		return this.#storage.current?.name ?? '';
 	}
 
-	remove(id: string) {
-		this.#storage.current = this.all.filter((user: User) => {
-			return user.id !== id;
-		});
+	get avatar() {
+		return this.#storage.current?.avatar ?? '';
 	}
 
-	update(id: string, patch: Partial<User>) {
-		this.#storage.current = this.all.map((user: User) => {
-			return user.id === id ? { ...user, ...patch } : user;
-		});
+	update(name?: User['name'], avatar?: User['avatar']) {
+		this.#storage.current = { ...this.user, name, avatar };
 	}
 }
 

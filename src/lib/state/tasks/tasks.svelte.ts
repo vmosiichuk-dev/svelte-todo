@@ -1,24 +1,29 @@
 import { LocalStorage } from '$utils';
 import { SvelteDate } from 'svelte/reactivity';
 
-export type TaskStatus = 'todo' | 'in-progress' | 'done';
+export type TaskStatus = 'all' | 'todo' | 'done';
 
 export interface Task {
 	id: string;
 	title: string;
-	description: string;
-	timestamp: number;
+	description?: string;
 	status: TaskStatus;
+	date: number;
 }
 
-export const STATUS = {
+export const TASK_STATUS = {
+	ALL: 'all',
 	TODO: 'todo',
-	PROGRESS: 'in-progress',
 	DONE: 'done',
 } as const;
 
 export class TasksState {
+	loaded = $state(false);
 	#storage = new LocalStorage<Task[]>('tasks', []);
+
+	constructor() {
+		this.loaded = true;
+	}
 
 	get all() {
 		return this.#storage.current;
@@ -28,31 +33,40 @@ export class TasksState {
 		this.#storage.current = [...this.all, task];
 	}
 
-	remove(id: string) {
-		this.#storage.current = this.all.filter((task: Task) => {
-			return task.id !== id;
+	update(id: string, data: Partial<Task>) {
+		this.#storage.current = this.all.map((task: Task) =>
+			task.id === id ? { ...task, ...data } : task
+		);
+	}
+
+	get todo() {
+		return this.all.filter((task: Task) => {
+			return task.status === TASK_STATUS.TODO;
 		});
 	}
 
-	update(id: string, patch: Partial<Task>) {
-		this.#storage.current = this.all.map((task: Task) => {
-			return task.id === id ? { ...task, ...patch } : task;
+	get done() {
+		return this.all.filter((task: Task) => {
+			return task.status === TASK_STATUS.DONE;
 		});
+	}
+
+	get #todayStart() {
+		return new SvelteDate().setHours(0, 0, 0, 0);
+	}
+
+	get #tomorrowStart() {
+		const date = new SvelteDate(this.#todayStart);
+		return date.setDate(date.getDate() + 1);
 	}
 
 	get today() {
-		const start = new SvelteDate().setHours(0, 0, 0, 0);
-		return this.all.filter((task: Task) => task.timestamp >= start);
-	}
+		const today = this.#todayStart;
+		const tomorrow = this.#tomorrowStart;
 
-	get byStatus() {
-		return {
-			todo: this.all.filter((task: Task) => task.status === STATUS.TODO),
-			progress: this.all.filter(
-				(task: Task) => task.status === STATUS.PROGRESS
-			),
-			done: this.all.filter((task: Task) => task.status === STATUS.DONE),
-		};
+		return this.all.filter((task: Task) => {
+			return task.date >= today && task.date < tomorrow;
+		});
 	}
 }
 
