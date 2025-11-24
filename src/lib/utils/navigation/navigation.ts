@@ -19,9 +19,7 @@ export const ROUTES: Record<string, Route> = {
 	HOMEPAGE: { title: 'Homepage', path: '/' },
 };
 
-export const getBrowserTabTitle = (
-	pageTitleOrStatus: string | number
-): string => {
+export const getBrowserTabTitle = (pageTitleOrStatus: string | number): string => {
 	return `${APP_TITLE} | ${pageTitleOrStatus}`;
 };
 

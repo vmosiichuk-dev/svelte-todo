@@ -8,14 +8,14 @@ const config = {
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
-			fallback: 'index.html'
+			fallback: 'index.html',
 		}),
 		alias: {
 			$assets: 'src/lib/assets',
 			$components: 'src/lib/components',
-			$constants: 'src/lib/constants',
 			$state: 'src/lib/state',
 			$utils: 'src/lib/utils',
+			$ui: 'src/lib/components/ui',
 		},
 	},
 };

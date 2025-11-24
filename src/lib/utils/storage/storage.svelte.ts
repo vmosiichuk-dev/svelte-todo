@@ -52,10 +52,7 @@ export class LocalStorage<T> {
 						Reflect.set(target, property, value);
 
 						if (typeof localStorage !== 'undefined') {
-							localStorage.setItem(
-								this.#key,
-								JSON.stringify(root)
-							);
+							localStorage.setItem(this.#key, JSON.stringify(root));
 						}
 
 						return true;
@@ -80,10 +77,7 @@ export class LocalStorage<T> {
 					tick().then(() => {
 						this.#listeners -= 1;
 						if (this.#listeners === 0) {
-							window.removeEventListener(
-								'storage',
-								this.#handler
-							);
+							window.removeEventListener('storage', this.#handler);
 						}
 					});
 				};

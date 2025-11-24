@@ -3,7 +3,7 @@
 	import { getBrowserTabTitle, gotoPage, ROUTES } from '$utils';
 	import { MoveRight } from '@lucide/svelte';
 	import { ErrorIcon } from '$assets';
-	import { Button } from '$components/button';
+	import { Button } from '$ui';
 	import * as Empty from '$components/empty';
 
 	const messages = {
@@ -36,10 +36,7 @@
 	{#if page.status === 404}
 		<Empty.Content>
 			<Empty.Description>
-				<Button
-					class="group"
-					onclick={() => gotoPage(ROUTES.HOMEPAGE.path)}
-				>
+				<Button class="group" onclick={() => gotoPage(ROUTES.HOMEPAGE.path)}>
 					<MoveRight
 						class={[
 							'transition-transform duration-200',

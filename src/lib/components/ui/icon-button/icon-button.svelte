@@ -1,12 +1,6 @@
 <script lang="ts">
-	import type { ButtonProps } from '$components/button';
-	import { Button } from '$components/button';
-
-	type IconButtonProps = ButtonProps & {
-		label?: string;
-		active?: boolean;
-		destructive?: boolean;
-	};
+	import type { ButtonProps } from '$ui';
+	import { Button } from '$ui';
 
 	let {
 		class: className,
@@ -15,7 +9,11 @@
 		destructive = false,
 		children,
 		...restProps
-	}: IconButtonProps = $props();
+	}: ButtonProps & {
+		label?: string;
+		active?: boolean;
+		destructive?: boolean;
+	} = $props();
 
 	const hoverClasses = destructive
 		? 'group-hover:bg-[var(--destructive-1)] hover:bg-[var(--destructive-1)]'
@@ -44,7 +42,7 @@
 			'group-focus-visible:ring-ring focus-visible:ring-ring',
 			hoverClasses,
 			activeClasses,
-			active && 'ring-3 ring-primary'
+			active && 'ring-3 ring-primary',
 		]}
 	>
 		{@render children?.()}

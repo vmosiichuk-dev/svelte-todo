@@ -1,21 +1,7 @@
-import { LocalStorage } from '$utils';
+import type { Task } from './tasks.types.ts';
+import { TASK_STATUS } from './tasks.constants.ts';
 import { SvelteDate } from 'svelte/reactivity';
-
-export type TaskStatus = 'all' | 'todo' | 'done';
-
-export interface Task {
-	id: string;
-	title: string;
-	description?: string;
-	status: TaskStatus;
-	date: number;
-}
-
-export const TASK_STATUS = {
-	ALL: 'all',
-	TODO: 'todo',
-	DONE: 'done',
-} as const;
+import { LocalStorage } from '$utils';
 
 export class TasksState {
 	loaded = $state(false);
@@ -44,13 +30,16 @@ export class TasksState {
 
 	toggleStatus(id: string) {
 		const updatedTasks = [...this.all];
-		const index = updatedTasks.findIndex(task => task.id === id);
+		const index = updatedTasks.findIndex((task) => task.id === id);
 
 		if (index !== -1) {
 			const task = updatedTasks[index];
 			updatedTasks[index] = {
 				...task,
-				status: task.status === TASK_STATUS.TODO ? TASK_STATUS.DONE : TASK_STATUS.TODO,
+				status:
+					task.status === TASK_STATUS.TODO
+						? TASK_STATUS.DONE
+						: TASK_STATUS.TODO,
 			};
 
 			this.#storage.current = [...updatedTasks];
