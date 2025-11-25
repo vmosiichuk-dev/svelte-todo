@@ -17,11 +17,11 @@
 
 	const hoverClasses = destructive
 		? 'group-hover:bg-[var(--destructive-1)] hover:bg-[var(--destructive-1)]'
-		: 'group-hover:bg-accent/50 hover:bg-accent/50';
+		: 'group-hover:bg-muted/80 hover:bg-muted/80';
 
 	const activeClasses = destructive
 		? 'group-active:bg-[var(--destructive-1)] active:bg-[var(--destructive-1)]'
-		: 'group-active:bg-accent/50 active:bg-accent/50';
+		: 'group-active:bg-muted/80 active:bg-muted/80';
 </script>
 
 <Button
@@ -36,7 +36,7 @@
 >
 	<span
 		class={[
-			'p-2.5',
+			'p-[15%]',
 			'rounded-full focus-visible:outline-none',
 			'group-focus-visible:ring-3 focus-visible:ring-3',
 			'group-focus-visible:ring-ring focus-visible:ring-ring',

@@ -1,9 +1,12 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import { SvelteDate } from 'svelte/reactivity';
 	import { tasks } from '$state/tasks';
 	import { PlusIcon } from '$assets';
-	import { Button, IconButton, Input, Label, Textarea, ModeToggle } from '$ui';
+	import { Button, IconButton, Input, Label, Textarea } from '$ui';
 	import * as Drawer from '$components/drawer';
+
+	let { children }: { children?: Snippet } = $props();
 
 	let drawerOpen = $state(false);
 	let formTitle = $state('');
@@ -34,17 +37,17 @@
 
 <div class="relative">
 	<Drawer.Root bind:open={drawerOpen}>
-		<div class="absolute top-3.75 right-1 flex items-center gap-2">
+		<div class="absolute top-0 right-1 flex items-center gap-3">
 			<IconButton onclick={toggleDrawer}>
 				<PlusIcon class="size-6 drop-shadow-liquid" />
 			</IconButton>
 
-			<ModeToggle />
+			{@render children?.()}
 		</div>
 
 		<Drawer.Content side="right">
 			<Drawer.Header>
-				<Drawer.Title>Add task</Drawer.Title>
+				<Drawer.Title>Add a task</Drawer.Title>
 
 				<Drawer.Description>
 					Fill in the required fields to add a new task
@@ -53,12 +56,15 @@
 
 			<form class="grid gap-8 p-4">
 				<fieldset class="grid gap-2">
-					<Label for="form-title">Title</Label>
+					<Label for="form-title" class="gap-0">
+						Title<sup class="text-destructive">*</sup>
+					</Label>
 
 					<Input
 						id="form-title"
 						bind:value={formTitle}
 						placeholder="Enter title..."
+						required
 					/>
 				</fieldset>
 
@@ -75,7 +81,7 @@
 
 			<Drawer.Footer class="mb-4">
 				<Button onclick={addTask} disabled={formTitle === ''}>
-					Create task
+					Submit
 				</Button>
 			</Drawer.Footer>
 		</Drawer.Content>

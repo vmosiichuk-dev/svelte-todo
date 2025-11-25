@@ -49,19 +49,23 @@
 	<Separator />
 
 	<Item.Content>
-		<Item.Description>{task?.description}</Item.Description>
+		{#if Boolean(task?.description)}
+			<Item.Description>{task?.description}</Item.Description>
+		{/if}
 
-		<div>
-			{@render badgeWithIcon({ Icon: Clock, label: time })}
-			{@render badgeWithIcon({ Icon: Calendar, label: date })}
+		<div class="flex justify-between items-center">
+			<div>
+				{@render badgeWithIcon({ Icon: Clock, label: time })}
+				{@render badgeWithIcon({ Icon: Calendar, label: date })}
+			</div>
+
+			<Item.Actions class="gap-3.5 h-8">
+				<Checkbox checked={isDone} onclick={() => tasks.toggleStatus(task.id)} />
+
+				<IconButton destructive onclick={() => tasks.delete(task.id)}>
+					<TrashcanIcon class="size-5 drop-shadow-liquid" />
+				</IconButton>
+			</Item.Actions>
 		</div>
 	</Item.Content>
-
-	<Item.Actions class="gap-3.5">
-		<Checkbox checked={isDone} onclick={() => tasks.toggleStatus(task.id)} />
-
-		<IconButton destructive onclick={() => tasks.delete(task.id)}>
-			<TrashcanIcon class="size-5 drop-shadow-liquid" />
-		</IconButton>
-	</Item.Actions>
 </Item.Root>

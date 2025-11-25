@@ -3,7 +3,7 @@
 	import { Sun, Moon } from '@lucide/svelte';
 	import { Button } from '$ui';
 
-	const iconClasses = 'h-[1.2rem] w-[1.2rem] !transition-all';
+	const iconClasses = 'h-4 w-4 !transition-all';
 	const sunClasses = 'scale-100 rotate-0 dark:scale-0 dark:-rotate-90';
 	const moonClasses = 'absolute scale-0 rotate-90 dark:scale-100 dark:rotate-0';
 </script>

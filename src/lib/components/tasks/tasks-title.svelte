@@ -34,8 +34,8 @@
 			<Skeleton class="h-3.75 w-full" />
 		{:else}
 			<h1 class="text-2xl font-semibold tracking-tight text-balance">
-				{#if tasks.today.length > 0}
-					You have {getCount(tasks.today, 'task')} for today
+				{#if tasks.todo.length > 0}
+					You have {getCount(tasks.todo, 'task')} to do
 				{:else if tasks.today.length === 0 && tasks.done.length > 0}
 					You have completed {getCount(tasks.done, 'task')} so far
 				{:else}
